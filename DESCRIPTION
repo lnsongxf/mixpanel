@@ -1,9 +1,12 @@
 Package: mixpanel
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Title: Interact with the Mixpanel API using R
+Version: 0.0.1
+Author: Tirthankar Chakravarty
+Maintainer: Tirthankar Chakravarty <tirthankar.chakravarty@gmail.com>
+Description: Thin wrapper around the Mixpanel API (https://mixpanel.com/docs/api-documentation/data-export-api). This package is an incomplete interface to the Mixpanel API depending on my requirements. The functions repeat code -- use with care.
+License: MIT
 LazyData: TRUE
+Depends: R (>= 3.1.0),
+  httr,
+  curl
