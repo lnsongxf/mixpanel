@@ -2,4 +2,4 @@
 .Rhistory
 .RData
 .Ruserdata
-tests/.API_SECRET.R
+inst/.API_SECRET.R
