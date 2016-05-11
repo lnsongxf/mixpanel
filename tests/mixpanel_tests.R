@@ -10,6 +10,10 @@
 # -
 #==============================================================================
 
+# get the API secret -- this is a little awkwardly put together
+# looks for a system.file .API_SECRET.R
+api_secret = Sys.getenv("MP_API_SECRET")
+
 # 1.1 get_mixpanel_annotations_annotations --------------------------------
 test_mixpanel_annotations_annotations = get_mixpanel_annotations_annotations(
   api_secret = api_secret,
@@ -58,3 +62,40 @@ test_post_mixpanel_annotations_delete = post_mixpanel_annotations_delete(
 # check the status code and the contents
 assert_that(test_post_mixpanel_annotations_delete$status_code == 200)
 content(test_post_mixpanel_annotations_delete, as = "text")
+
+
+# 2 endpoint: events ------------------------------------------------------
+
+# 2.1 get_mixpanel_events_events ------------------------------------------
+test_get_mixpanel_events_events = get_mixpanel_events_events(
+  api_secret = api_secret,
+  event = paste0('["', "Page Viewed", '"]'),
+  type = "unique",
+  unit = "day",
+  interval = 100
+)
+
+# check the return object
+assert_that(test_get_mixpanel_events_events$status_code == 200)
+content(test_get_mixpanel_events_events, as = "text")
+
+# 2.2 get_mixpanel_events_top ---------------------------------------------
+test_get_mixpanel_events_top = get_mixpanel_events_top(
+  api_secret = api_secret,
+  type = "unique",
+  limit = 100
+)
+
+# check the return object
+assert_that(test_get_mixpanel_events_top$status_code == 200)
+content(test_get_mixpanel_events_top, as = "text")
+
+# 2.3 get_mixpanel_events_names -------------------------------------------
+test_get_mixpanel_events_names = get_mixpanel_events_names(
+  type = "unique",
+  limit = 100
+)
+
+# check the return object
+assert_that(test_get_mixpanel_events_names$status_code == 200)
+content(test_get_mixpanel_events_names, as = "text")

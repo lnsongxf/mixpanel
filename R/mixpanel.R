@@ -128,3 +128,79 @@ post_mixpanel_annotations_delete = function(
   data_mixpanel = POST(url_mixpanel)
 
 }
+
+# 2 endpoint: events ------------------------------------------------------
+
+# 2.1 get_mixpanel_events_events ------------------------------------------
+get_mixpanel_events_events = function(
+  api_secret,
+  event,
+  type,
+  unit,
+  interval
+) {
+  # compose the URL
+  url_mixpanel = modify_url(
+    # common
+    scheme = "https",
+    url = "data.mixpanel.com",
+    path = "api/2.0/events",
+    hostname = "mixpanel.com",
+    query = list(
+      event = event,
+      type = type,
+      unit = unit,
+      interval = interval
+    ),
+    username = api_secret
+  )
+  data_mixpanel = POST(url_mixpanel)
+  return(data_mixpanel)
+}
+
+# 2.2 get_mixpanel_events_top ---------------------------------------------
+get_mixpanel_events_top = function(
+  api_secret,
+  type,
+  limit
+) {
+  # compose the URL
+  url_mixpanel = modify_url(
+    # common
+    scheme = "https",
+    url = "data.mixpanel.com",
+    path = "api/2.0/events/top",
+    hostname = "mixpanel.com",
+    query = list(
+      type = type,
+      limit = limit
+    ),
+    username = api_secret
+  )
+  data_mixpanel = POST(url_mixpanel)
+  return(data_mixpanel)
+}
+
+# 2.3 get_mixpanel_events_names -------------------------------------------
+get_mixpanel_events_names = function(
+  type,
+  limit
+) {
+  # compose the URL
+  url_mixpanel = modify_url(
+    # common
+    scheme = "https",
+    url = "data.mixpanel.com",
+    path = "api/2.0/events/names",
+    hostname = "mixpanel.com",
+    query = list(
+      type = type,
+      limit = limit
+    ),
+    username = api_secret
+  )
+  data_mixpanel = POST(url_mixpanel)
+  return(data_mixpanel)
+
+}
+
