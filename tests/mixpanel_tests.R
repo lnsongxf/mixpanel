@@ -10,9 +10,8 @@
 # -
 #==============================================================================
 
-# get the API secret -- this is a little awkwardly put together
-# looks for a system.file .API_SECRET.R
-api_secret = Sys.getenv("MP_API_SECRET")
+# get the API secret
+api_secret = ""
 
 # 1.1 get_mixpanel_annotations_annotations --------------------------------
 test_mixpanel_annotations_annotations = get_mixpanel_annotations_annotations(
