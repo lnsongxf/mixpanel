@@ -6,7 +6,7 @@
 # revised: 10th May 2016
 # comments:
 # 1. endpoint: annotations
-#   1.1 method: annotations -- get_mixpanel_annotations_annotations
+#   1.1 method: annotations -- get_mixpanel_annotations_annotations           -- IMPLEMENTED
 #   1.2 method: create      -- post_mixpanel_annotations_create
 #   1.3 method: update      -- get_mixpanel_annotations_update
 #   1.4 method: delete      -- post_mixpanel_annotations_delete
@@ -40,22 +40,91 @@
 #==============================================================================
 
 
-get_mixpanel_annotations = function(
+# 1.1 get_mixpanel_annotations_annotations ---------------------------------------------------------------------
+get_mixpanel_annotations_annotations = function(
   api_secret,
   from_date,
   to_date
 ) {
   # compose the URL
   url_mixpanel = modify_url(
+    # common
     scheme = "https",
     url = "data.mixpanel.com",
     path = "api/2.0/annotations/",
     hostname = "mixpanel.com",
     query = list(
       from_date = from_date,
-      to_date
+      to_date = to_date
     ),
     username = api_secret
   )
   data_mixpanel = GET(url_mixpanel)
+}
+
+# 1.2 post_mixpanel_annotations_create ---------------------------------------------------------------------
+post_mixpanel_annotations_create = function(
+  api_secret,
+  date,
+  description
+) {
+  # compose the URL
+  url_mixpanel = modify_url(
+    # common
+    scheme = "https",
+    url = "data.mixpanel.com",
+    path = "api/2.0/annotations/create",
+    hostname = "mixpanel.com",
+    query = list(
+      date = date,
+      description = description
+    ),
+    username = api_secret
+  )
+  data_mixpanel = POST(url_mixpanel)
+}
+
+# 1.3 post_mixpanel_annotations_update ---------------------------------------------------------------------
+post_mixpanel_annotations_update = function(
+  api_secret,
+  id,
+  date,
+  description
+) {
+  # compose the URL
+  url_mixpanel = modify_url(
+    # common
+    scheme = "https",
+    url = "data.mixpanel.com",
+    path = "api/2.0/annotations/update",
+    hostname = "mixpanel.com",
+    query = list(
+      id = id,
+      date = date,
+      description = description
+    ),
+    username = api_secret
+  )
+  data_mixpanel = POST(url_mixpanel)
+}
+
+# 1.4 post_mixpanel_annotations_delete ---------------------------------------------------------------------
+post_mixpanel_annotations_delete = function(
+  api_secret,
+  id
+) {
+  # compose the URL
+  url_mixpanel = modify_url(
+    # common
+    scheme = "https",
+    url = "data.mixpanel.com",
+    path = "api/2.0/annotations/delete",
+    hostname = "mixpanel.com",
+    query = list(
+      id = id
+    ),
+    username = api_secret
+  )
+  data_mixpanel = POST(url_mixpanel)
+
 }
