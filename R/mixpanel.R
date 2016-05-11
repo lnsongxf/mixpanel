@@ -154,7 +154,7 @@ get_mixpanel_events_events = function(
     ),
     username = api_secret
   )
-  data_mixpanel = POST(url_mixpanel)
+  data_mixpanel = GET(url_mixpanel)
   return(data_mixpanel)
 }
 
@@ -177,7 +177,7 @@ get_mixpanel_events_top = function(
     ),
     username = api_secret
   )
-  data_mixpanel = POST(url_mixpanel)
+  data_mixpanel = GET(url_mixpanel)
   return(data_mixpanel)
 }
 
@@ -199,7 +199,7 @@ get_mixpanel_events_names = function(
     ),
     username = api_secret
   )
-  data_mixpanel = POST(url_mixpanel)
+  data_mixpanel = GET(url_mixpanel)
   return(data_mixpanel)
 }
 
@@ -236,7 +236,7 @@ get_mixpanel_event_properties_properties = function(
     ),
     username = api_secret
   )
-  data_mixpanel = POST(url_mixpanel)
+  data_mixpanel = GET(url_mixpanel)
   return(data_mixpanel)
 }
 
@@ -259,7 +259,7 @@ get_mixpanel_event_properties_top = function(
     ),
     username = api_secret
   )
-  data_mixpanel = POST(url_mixpanel)
+  data_mixpanel = GET(url_mixpanel)
   return(data_mixpanel)
 }
 
@@ -287,11 +287,66 @@ get_mixpanel_event_properties_values = function(
     ),
     username = api_secret
   )
-  data_mixpanel = POST(url_mixpanel)
+  data_mixpanel = GET(url_mixpanel)
   return(data_mixpanel)
 }
 
 
 # 4. endpoint: funnels ----------------------------------------------------
+
+# 4.1 get_mixpanel_funnels_funnels ----------------------------------------
+get_mixpanel_funnels_funnels = function(
+  api_secret,
+  funnel_id,
+  from_date,
+  to_date,
+  length,
+  interval,
+  unit,
+  on,
+  where,
+  limit
+) {
+  # compose the URL
+  url_mixpanel = modify_url(
+    # common
+    scheme = "https",
+    url = "data.mixpanel.com",
+    path = "api/2.0/funnels",
+    hostname = "mixpanel.com",
+    query = list(
+      funnel_id = funnel_id,
+      from_date = from_date,
+      to_date = to_date,
+      length = length,
+      interval = interval,
+      unit = unit,
+      on = on,
+      where = where,
+      limit = limit
+    ),
+    username = api_secret
+  )
+  data_mixpanel = GET(url_mixpanel)
+  return(data_mixpanel)
+}
+
+
+# 4.2 get_mixpanel_funnels_list -------------------------------------------
+get_mixpanel_funnels_list = function(
+  api_secret
+) {
+  # compose the URL
+  url_mixpanel = modify_url(
+    # common
+    scheme = "https",
+    url = "data.mixpanel.com",
+    path = "api/2.0/funnels/list",
+    hostname = "mixpanel.com",
+    username = api_secret
+  )
+  data_mixpanel = GET(url_mixpanel)
+  return(data_mixpanel)
+}
 
 

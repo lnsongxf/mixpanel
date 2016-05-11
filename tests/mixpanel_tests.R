@@ -144,3 +144,33 @@ test_get_mixpanel_event_properties_values = get_mixpanel_event_properties_values
 # check the response
 assert_that(test_get_mixpanel_event_properties_values$status_code == 200)
 content(test_get_mixpanel_event_properties_values, as = "text")
+
+# 4. endpoint: funnels ----------------------------------------------------
+
+# 4.1 get_mixpanel_funnels_funnels ----------------------------------------
+test_get_mixpanel_funnels_funnels = get_mixpanel_funnels_funnels(
+  api_secret = api_secret,
+  funnel_id = 1692025,
+  from_date = Sys.Date() - ddays(20),
+  to_date = Sys.Date(),
+  length = NULL,
+  interval = NULL,
+  unit = "day",
+  on = NULL,
+  where = NULL,
+  limit = NULL
+)
+
+# check the response
+assert_that(test_get_mixpanel_funnels_funnels$status_code == 200)
+content(test_get_mixpanel_funnels_funnels, as = "text")
+
+# 4.2 get_mixpanel_funnels_list -------------------------------------------
+test_get_mixpanel_funnels_list = get_mixpanel_funnels_list(
+  api_secret = api_secret
+)
+
+# check the response
+assert_that(test_get_mixpanel_funnels_list$status_code == 200)
+content(test_get_mixpanel_funnels_list, as = "text")
+
