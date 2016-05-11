@@ -201,6 +201,97 @@ get_mixpanel_events_names = function(
   )
   data_mixpanel = POST(url_mixpanel)
   return(data_mixpanel)
-
 }
+
+# 3. endpoint: event properties -------------------------------------------
+
+# 3.1 get_mixpanel_event_properties_properties ----------------------------
+get_mixpanel_event_properties_properties = function(
+  api_secret,
+  event,
+  name,
+  values,
+  type,
+  unit,
+  interval,
+  format,
+  limit
+) {
+  # compose the URL
+  url_mixpanel = modify_url(
+    # common
+    scheme = "https",
+    url = "data.mixpanel.com",
+    path = "api/2.0/events/properties/",
+    hostname = "mixpanel.com",
+    query = list(
+      event = event,
+      name = name,
+      values = values,
+      type = type,
+      unit = unit,
+      interval = interval,
+      format = format,
+      limit = limit
+    ),
+    username = api_secret
+  )
+  data_mixpanel = POST(url_mixpanel)
+  return(data_mixpanel)
+}
+
+# 3.2 get_mixpanel_event_properties_top -----------------------------------
+get_mixpanel_event_properties_top = function(
+  api_secret,
+  event,
+  limit
+) {
+  # compose the URL
+  url_mixpanel = modify_url(
+    # common
+    scheme = "https",
+    url = "data.mixpanel.com",
+    path = "api/2.0/events/properties/top",
+    hostname = "mixpanel.com",
+    query = list(
+      event = event,
+      limit = limit
+    ),
+    username = api_secret
+  )
+  data_mixpanel = POST(url_mixpanel)
+  return(data_mixpanel)
+}
+
+
+# 3.3 get_mixpanel_event_properties_values --------------------------------
+get_mixpanel_event_properties_values = function(
+  api_secret,
+  event,
+  name,
+  limit,
+  bucket
+) {
+  # compose the URL
+  url_mixpanel = modify_url(
+    # common
+    scheme = "https",
+    url = "data.mixpanel.com",
+    path = "api/2.0/events/properties/values",
+    hostname = "mixpanel.com",
+    query = list(
+      event = event,
+      limit = limit,
+      name = name,
+      bucket = bucket
+    ),
+    username = api_secret
+  )
+  data_mixpanel = POST(url_mixpanel)
+  return(data_mixpanel)
+}
+
+
+# 4. endpoint: funnels ----------------------------------------------------
+
 

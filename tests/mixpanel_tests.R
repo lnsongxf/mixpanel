@@ -99,3 +99,48 @@ test_get_mixpanel_events_names = get_mixpanel_events_names(
 # check the return object
 assert_that(test_get_mixpanel_events_names$status_code == 200)
 content(test_get_mixpanel_events_names, as = "text")
+
+# 3. endpoint: event properties -------------------------------------------
+
+# 3.1 get_mixpanel_event_properties_properties ----------------------------
+test_get_mixpanel_event_properties_properties = get_mixpanel_event_properties_properties(
+  api_secret = api_secret,
+  event = "App Launched",
+  name = "Platform",
+  values = NULL,
+  type = "general",
+  unit = "day",
+  interval = 100,
+  format = "json",
+  limit = 100
+)
+
+# check the response
+assert_that(
+  test_get_mixpanel_event_properties_properties$status_code == 200
+)
+content(test_get_mixpanel_event_properties_properties, as = "text")
+
+# 3.2 get_mixpanel_event_properties_top -----------------------------------
+test_get_mixpanel_event_properties_top = get_mixpanel_event_properties_top(
+  api_secret = api_secret,
+  event = "Page Viewed",
+  limit = 100
+)
+
+# check the response
+assert_that(test_get_mixpanel_event_properties_top$status_code == 200)
+content(test_get_mixpanel_event_properties_top, as = "text")
+
+# # 3.3 get_mixpanel_event_properties_values --------------------------------
+test_get_mixpanel_event_properties_values = get_mixpanel_event_properties_values(
+  api_secret = api_secret,
+  event = "Page Viewed",
+  name = "Page Type",
+  limit = 100,
+  bucket = NULL
+)
+
+# check the response
+assert_that(test_get_mixpanel_event_properties_values$status_code == 200)
+content(test_get_mixpanel_event_properties_values, as = "text")
